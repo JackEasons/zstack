@@ -9,6 +9,7 @@ import org.zstack.header.image.ImageVO;
 import org.zstack.header.message.APICreateMessage;
 import org.zstack.header.message.APIParam;
 import org.zstack.header.network.l3.L3NetworkVO;
+import org.zstack.header.storage.primary.PrimaryStorageVO;
 import org.zstack.header.tag.TagResourceType;
 import org.zstack.header.zone.ZoneVO;
 
@@ -120,6 +121,12 @@ public class APICreateVmInstanceMsg extends APICreateMessage {
      */
     @APIParam(required = false, resourceType = HostVO.class)
     private String hostUuid;
+    /**
+     * @desc when not null, vm will be created on the primary storage this uuid specified
+     * @optional
+     */
+    @APIParam(required = false, resourceType = PrimaryStorageVO.class)
+    private String primaryStorageUuidForRootVolume;
     /**
      * @desc max length of 255 characters
      * @optional
@@ -250,5 +257,12 @@ public class APICreateVmInstanceMsg extends APICreateMessage {
 
     public void setRootPassword(String rootPassword) {
         this.rootPassword = rootPassword;
+    }
+    public String getPrimaryStorageUuidForRootVolume() {
+        return primaryStorageUuidForRootVolume;
+    }
+
+    public void setPrimaryStorageUuidForRootVolume(String primaryStorageUuidForRootVolume) {
+        this.primaryStorageUuidForRootVolume = primaryStorageUuidForRootVolume;
     }
 }
